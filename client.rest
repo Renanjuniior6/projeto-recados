@@ -2,7 +2,9 @@
 
 ### Listar todos os recados
 
-GET {{baseUrl}}/recados
+GET {{baseUrl}}/recados/
+?limit=10
+&offset=0
 
 ### Listar somente um recado
 
@@ -35,7 +37,9 @@ DELETE {{baseUrl}}/recados/5
 ///////////////////////////////////////////////// 
 
 ### Listar todas as pessoas
-GET {{baseUrl}}/pessoas
+GET {{baseUrl}}/pessoas/
+?limit=10
+&offset=0
 
 ### Listar somente uma pessoa
 
@@ -48,8 +52,8 @@ POST {{baseUrl}}/pessoas
 Content-Type: application/json
 
 {
-    "nome": "Pedro",
-    "email": "contato@contato.com",
+    "nome": "Miguel",
+    "email": "miguel@contato.com",
     "password": "123456"
 }
 

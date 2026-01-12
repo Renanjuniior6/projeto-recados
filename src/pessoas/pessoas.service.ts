@@ -8,6 +8,7 @@ import { UpdatePessoaDto } from './dto/update-pessoa.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Pessoa } from './entities/pessoa.entity';
 import { Repository } from 'typeorm';
+import { PaginationDTO } from 'src/common/dto/pagination.dto';
 
 @Injectable()
 export class PessoasService {
@@ -39,8 +40,12 @@ export class PessoasService {
     }
   }
 
-  async findAll() {
+  async findAll(paginationDTO: PaginationDTO) {
+    const { limit = 10, offset = 0 } = paginationDTO;
+
     const pessoas = await this.pessoaRepository.find({
+      take: limit,
+      skip: offset,
       order: {
         id: 'DESC',
       },

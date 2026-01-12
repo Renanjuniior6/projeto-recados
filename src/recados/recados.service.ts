@@ -5,6 +5,7 @@ import { UpdateRecadoDTO } from './dtos/update-recado.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PessoasService } from 'src/pessoas/pessoas.service';
+import { PaginationDTO } from 'src/common/dto/pagination.dto';
 
 @Injectable()
 export class RecadosService {
@@ -18,10 +19,16 @@ export class RecadosService {
     throw new HttpException('Recado não encontrado', HttpStatus.NOT_FOUND);
   }
 
-  async findAll() {
+  async findAll(paginationDTO: PaginationDTO) {
+    const { limit = 10, offset = 0 } = paginationDTO;
+
     const recados = await this.recadoRepository.find({
+      take: limit, // Estou limitando o número de registros por página assim como no SQL 'LIMIT'
+      skip: offset, // Quantos registros devem ser pulados
+
       // Estou dizendo que quero que retorne as minhas relações também
       relations: ['de', 'para'],
+
       // Ordernar por id em ordem decrescente
       order: {
         id: 'DESC',

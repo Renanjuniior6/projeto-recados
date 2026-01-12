@@ -1,0 +1,70 @@
+@baseUrl = http://localhost:3000
+
+### Listar todos os recados
+
+GET {{baseUrl}}/recados
+
+### Listar somente um recado
+
+GET {{baseUrl}}/recados/9
+
+### Cria um recado
+
+POST {{baseUrl}}/recados
+Content-Type: application/json
+
+{
+    "texto": "De Pedro para Renan",
+    "deId": 15, 
+    "paraId": 11
+}
+ 
+### Atualiza um recado
+
+PATCH {{baseUrl}}/recados/9
+Content-Type: application/json
+
+{
+    "lido": false
+}
+
+// Remove o recado
+###
+DELETE {{baseUrl}}/recados/5
+
+///////////////////////////////////////////////// 
+
+### Listar todas as pessoas
+GET {{baseUrl}}/pessoas
+
+### Listar somente uma pessoa
+
+GET {{baseUrl}}/pessoas/11
+
+
+### Cria uma pessoa
+
+POST {{baseUrl}}/pessoas
+Content-Type: application/json
+
+{
+    "nome": "Pedro",
+    "email": "contato@contato.com",
+    "password": "123456"
+}
+
+### Atualizar pessoa
+
+PATCH {{baseUrl}}/pessoas/1
+Content-Type: application/json
+
+{
+    "nome": "Renan Jr",
+    "password": "$renan678"
+}
+
+### Remove uma pessoa
+
+DELETE {{baseUrl}}/pessoas/13
+
+

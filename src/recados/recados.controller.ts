@@ -4,7 +4,6 @@ import {
   Delete,
   Get,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -13,8 +12,10 @@ import { RecadosService } from './recados.service';
 import { CreateRecadoDTO } from 'src/recados/dtos/create-recado.dto';
 import { UpdateRecadoDTO } from './dtos/update-recado.dto';
 import { PaginationDTO } from 'src/common/dto/pagination.dto';
+// import { ParseIntIdPipe } from 'src/common/pipes/parse-int-id.pipe';
 
 @Controller('recados')
+// @UsePipes(ParseIntIdPipe)
 export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
   @Get()
@@ -25,7 +26,7 @@ export class RecadosController {
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
+  findOne(@Param('id') id: number) {
     return this.recadosService.findOne(id);
   }
 
@@ -35,15 +36,12 @@ export class RecadosController {
   }
 
   @Patch(':id')
-  update(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updateRecadoDTO: UpdateRecadoDTO,
-  ) {
+  update(@Param('id') id: number, @Body() updateRecadoDTO: UpdateRecadoDTO) {
     return this.recadosService.update(id, updateRecadoDTO);
   }
 
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
+  remove(@Param('id') id: number) {
     return this.recadosService.remove(id);
   }
 }

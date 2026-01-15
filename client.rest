@@ -27,12 +27,12 @@ PATCH {{baseUrl}}/recados/9
 Content-Type: application/json
 
 {
-    "lido": false
+    "lido": true
 }
 
 // Remove o recado
 ###
-DELETE {{baseUrl}}/recados/5
+DELETE {{baseUrl}}/recados/9
 
 ///////////////////////////////////////////////// 
 

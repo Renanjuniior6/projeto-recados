@@ -46,7 +46,6 @@ export class RecadosService {
       },
     });
 
-    console.log('RecadosController executado');
     return recados;
   }
 

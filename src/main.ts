@@ -15,4 +15,6 @@ async function bootstrap() {
   );
   await app.listen(process.env.PORT ?? 3000);
 }
-bootstrap();
+bootstrap().catch((err) => {
+  console.error('Erro ao inicializar o Nest', err);
+});

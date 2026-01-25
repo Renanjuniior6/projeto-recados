@@ -15,6 +15,7 @@ import { UpdateRecadoDTO } from './dtos/update-recado.dto';
 import { PaginationDTO } from 'src/common/dto/pagination.dto';
 import { AddHeaderInterceptor } from 'src/common/interceptors/add-header.interceptor';
 import { TimingConnectionInterceptor } from 'src/common/interceptors/timing-connection.interceptor';
+import { ErrorhandlingInterceptor } from 'src/common/interceptors/error-handling.interceptor';
 // import { ParseIntIdPipe } from 'src/common/pipes/parse-int-id.pipe';
 
 @Controller('recados')
@@ -22,7 +23,7 @@ import { TimingConnectionInterceptor } from 'src/common/interceptors/timing-conn
 export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
   @Get()
-  @UseInterceptors(TimingConnectionInterceptor)
+  @UseInterceptors(TimingConnectionInterceptor, ErrorhandlingInterceptor)
   async findAll(@Query() paginationDTO: PaginationDTO) {
     const recados = await this.recadosService.findAll(paginationDTO);
 
@@ -30,7 +31,7 @@ export class RecadosController {
     return recados;
   }
 
-  @UseInterceptors(AddHeaderInterceptor)
+  @UseInterceptors(AddHeaderInterceptor, ErrorhandlingInterceptor)
   @Get(':id')
   findOne(@Param('id') id: number) {
     return this.recadosService.findOne(id);

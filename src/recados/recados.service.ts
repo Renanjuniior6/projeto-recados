@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateRecadoDTO } from 'src/recados/dtos/create-recado.dto';
 import { Recado } from './entities/recado.entity';
 import { UpdateRecadoDTO } from './dtos/update-recado.dto';
@@ -16,7 +16,7 @@ export class RecadosService {
   ) {}
 
   throwRecadoError() {
-    throw new HttpException('Recado não encontrado', HttpStatus.NOT_FOUND);
+    throw new NotFoundException('Recado não encontrado');
   }
 
   async findAll(paginationDTO: PaginationDTO) {

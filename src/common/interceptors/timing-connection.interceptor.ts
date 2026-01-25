@@ -10,7 +10,7 @@ export class TimingConnectionInterceptor implements NestInterceptor {
 
     return next.handle().pipe(
       tap(() => {
-        // Realiza algo no final da execução da requisição e é possível pegar os dados da resposta também passando o 'data' como argumento
+        // tap -> Realiza algo no final da execução da requisição e é possível pegar os dados da resposta também passando o 'data' como argumento
         const finalTime = Date.now();
         const elapsedTime = finalTime - startTime;
         console.log(

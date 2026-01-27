@@ -18,8 +18,9 @@ import { TimingConnectionInterceptor } from 'src/common/interceptors/timing-conn
 import { ErrorhandlingInterceptor } from 'src/common/interceptors/error-handling.interceptor';
 import { SimpleCacheInterceptor } from 'src/common/interceptors/simple-cache.interceptor';
 import { ChangeDatainterceptor } from 'src/common/interceptors/change-data.interceptor';
+import { AuthTokenInterceptor } from 'src/common/interceptors/auth-token.interceptor';
 // import { ParseIntIdPipe } from 'src/common/pipes/parse-int-id.pipe';
-@UseInterceptors(SimpleCacheInterceptor)
+@UseInterceptors(SimpleCacheInterceptor, AuthTokenInterceptor)
 @Controller('recados')
 // @UsePipes(ParseIntIdPipe)
 export class RecadosController {

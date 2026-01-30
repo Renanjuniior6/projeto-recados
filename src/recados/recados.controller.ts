@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   Query,
+  Req,
   UseInterceptors,
 } from '@nestjs/common';
 import { RecadosService } from './recados.service';
@@ -27,7 +28,8 @@ export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
   @Get()
   @UseInterceptors(ChangeDatainterceptor, ErrorhandlingInterceptor)
-  async findAll(@Query() paginationDTO: PaginationDTO) {
+  async findAll(@Query() paginationDTO: PaginationDTO, @Req() req: Request) {
+    console.log('RecadosController:', req['user']);
     const recados = await this.recadosService.findAll(paginationDTO);
 
     return recados;

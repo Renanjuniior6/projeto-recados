@@ -5,7 +5,7 @@
 GET {{baseUrl}}/recados/
 ?limit=10
 &offset=0
-Authorization: Bearer SeuTokenAqui
+Authorization: Bearer 123456
 ### Listar somente um recado
 
 GET {{baseUrl}}/recados/90

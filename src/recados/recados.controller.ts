@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -27,12 +28,14 @@ import { AuthTokenInterceptor } from 'src/common/interceptors/auth-token.interce
 export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
   @Get()
-  @UseInterceptors(ChangeDatainterceptor, ErrorhandlingInterceptor)
+  @UseInterceptors(ChangeDatainterceptor)
   async findAll(@Query() paginationDTO: PaginationDTO, @Req() req: Request) {
     console.log('RecadosController:', req['user']);
     const recados = await this.recadosService.findAll(paginationDTO);
 
-    return recados;
+    throw new BadRequestException();
+
+    // return recados;
   }
 
   @UseInterceptors(AddHeaderInterceptor, ErrorhandlingInterceptor)

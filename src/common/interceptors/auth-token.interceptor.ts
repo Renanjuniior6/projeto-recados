@@ -19,8 +19,6 @@ export class AuthTokenInterceptor implements NestInterceptor {
       throw new UnauthorizedException('Usuário não logado');
     }
 
-    console.log('Seu token é:', token);
-
     return next.handle();
   }
 }

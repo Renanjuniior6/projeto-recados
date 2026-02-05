@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {
   BadRequestException,
   CallHandler,
@@ -14,8 +13,6 @@ export class ErrorhandlingInterceptor implements NestInterceptor {
     context: ExecutionContext,
     next: CallHandler<any>,
   ): Observable<any> | Promise<Observable<any>> {
-    console.log('ErrorHandlingInterceptor exceutado ANTES');
-
     return next.handle().pipe(
       catchError((error) => {
         return throwError(() => {
